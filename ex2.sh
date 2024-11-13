@@ -43,3 +43,18 @@ while IFS= read -r line || [ -n "$line" ]; do
 done < "data.txt"
 
 echo "There are $greaterCounter number greater and $lessCounter number less than what indicated"
+
+#2d
+
+echo "Write the number of copies n: "
+read numberCopies
+
+for (( i=1; i<=numberCopies; i++ )); do
+    while IFS= read -r line || [ -n "$line" ]; do
+        output_line=""
+        for number in $line; do
+            output_line+="$((number / i)) "
+        done
+        echo "${output_line% }" >> "data_${i}.txt"
+    done < "data.txt"
+done
